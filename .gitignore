@@ -1,0 +1,21 @@
+# Virtual environment
+mh_env/
+
+# Data files
+data/
+*.csv
+
+# Jupyter checkpoints
+.ipynb_checkpoints/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Environment files
+.env
+
+# OS files
+.DS_Store
+Thumbs.db
