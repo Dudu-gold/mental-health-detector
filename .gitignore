@@ -20,5 +20,4 @@ __pycache__/
 .DS_Store
 Thumbs.db
 
-models/*.pkl
-*.pkl
+models/rf_model.pkl
