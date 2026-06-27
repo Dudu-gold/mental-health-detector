@@ -15,32 +15,33 @@ Mental health conditions are increasingly expressed through social media platfor
 ## Models Used
 | Model | Accuracy | Weighted F1 |
 |-------|---------|-------------|
-| Logistic Regression | 77% | 0.77 |
-| Support Vector Machine (SVM) | 77% | 0.76 |
+| random forest | 74% | 0.74 |
+| Support Vector Machine (LinearSVC) | 77% | 0.77 |
 
 ## Why Lightweight Models?
-This project deliberately employs lightweight models — Logistic Regression and Support Vector Machine — instead of computationally expensive transformer based models like BERT. This makes the solution more accessible, interpretable, and deployable in resource constrained environments.
+This project deliberately employs lightweight models — random forest and Support Vector Machine — instead of computationally expensive transformer based models like BERT. This makes the solution more accessible, interpretable, and deployable in resource constrained environments.
 
 ## Key Findings
-- Both models achieved 77% overall accuracy
-- Normal class achieved highest F1 score of 0.90 due to having the most training samples
-- Suicidal class achieved lowest F1 score of 0.64 due to overlapping vocabulary with Depression
-- Dataset imbalance significantly affected per class performance
-- Cultural language differences and informal expressions were identified as limitations through real world testing
+- Random Forest achieved 74% accuracy while LinearSVC (SVM) achieved 77% accuracy
+- Normal class achieved the highest F1-score of 0.90 due to having the most training samples (18,391 posts)
+- Suicidal class achieved the lowest F1-score of 0.64 due to overlapping vocabulary with the Depression category
+- Dataset imbalance significantly affected per-class performance — particularly for the Anxiety class (5,503 posts)
+- Cultural language differences and informal expressions were identified as key limitations
+- A real-world test using Nigerian Pidgin ("I don dey tire for everything. E be like say nothing dey work for my life. I no fit carry this thing again.") returned a Suicidal prediction with only 37% confidence — barely above a random guess across four classes — confirming that the model cannot reliably detect mental health risk expressed outside Western English, and highlighting the urgent need for culturally diverse and multilingual training datasets
 
 ## Project Structure
 ```
 mental_health_project/
 │
 ├── model/
-│   ├── lr_model.pkl
+│   ├── rf_model.pkl
 │   ├── svm_model.pkl
 │   └── vectorizer.pkl
 │
 ├── notebooks/
 │   ├── exploration.ipynb
 │   ├── text_processing.ipynb
-│   └── tfidf.ipynb
+│   └── tfidf_model.ipynb
 │
 ├── .gitignore
 ├── LICENSE
@@ -56,7 +57,7 @@ mental_health_project/
 | NLTK | Text preprocessing |
 | TF-IDF | Feature extraction |
 | Matplotlib/Seaborn | Visualization |
-| Streamlit | Web application (coming soon) |
+| Streamlit | Web application  |
 
 ## Installation
 ```bash
@@ -82,7 +83,7 @@ Contains 49,000+ social media posts labeled across 4 mental health categories.
 
 ## Author
 Duduyemi Olalekan
-Final Year Project — 2025
+Final Year Project — 2026
 
 ## License
 MIT License — see LICENSE file for details
